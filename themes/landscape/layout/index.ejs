@@ -5,6 +5,17 @@
   <title><%= config.title %></title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="adamsandwich,blog" />
+  <meta name="description" content="adamsandwich,blog" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131159968-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131159968-1');
+  </script>
   <% site.pages.filter((obj)=>{
     return obj.layout === 'head'
   }).forEach((obj)=>{ %>
