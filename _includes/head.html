@@ -1,0 +1,29 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="{{ site.description }}">
+  <meta name="keywords" content="{{ site.keyword }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  {% case page.layout %}
+  {% when 'post' %}
+  <meta property="og:type" content="article">
+  {% if page.author %}
+  <meta property="article:author" content="{{ page.author }}">
+  {% endif %}
+  {% for tag in page.tags %}
+  <meta property="article:tag" content="{{ tag }}">
+  {% endfor %}
+  {% else %}
+  <meta property="og:type" content="website">
+  <meta property="og:description"
+    content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  {% endcase %}
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+
+  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/adamsandwich.css">
+</head>

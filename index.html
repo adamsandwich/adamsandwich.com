@@ -1,0 +1,36 @@
+---
+layout: page
+description: "Aim to be a Pokémon Master"
+---
+
+{% for post in paginator.posts %}
+<div class="card">
+  <a href="{{ post.url | prepend: site.baseurl }}">
+    <h1>{{ post.title }}</h1>
+    {% if post.subtitle %}
+    <h2>{{ post.subtitle }}</h2>
+    {% endif %}
+    <h3>{{ post.date | date: "%B %-d, %Y" }}</h3>
+    <div>
+      {{ post.content | strip_html | truncate:200 }}
+    </div>
+  </a>
+</div>
+
+{% endfor %}
+
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+  {% if paginator.previous_page %}
+  <li class="previous">
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+  </li>
+  {% endif %}
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+  </li>
+  {% endif %}
+</ul>
+{% endif %}

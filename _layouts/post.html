@@ -1,0 +1,41 @@
+---
+layout: default
+toc: false
+---
+<!-- Post Header -->
+{% include intro-header.html %}
+
+<!-- Post Container -->
+<main>
+  <div class="container portrait">
+    <div class="container landscape post">
+      <!-- Post Content -->
+      <article class="article">
+        {{ content }}
+      </article>
+      <!-- Table of Content -->
+      {% toc %}
+    </div>
+    <div class="pager">
+      {% if page.previous.url %}
+      <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip"
+        data-placement="top" title="{{page.previous.title}}">
+        <button class="previous">
+          Previous<br>
+          <span>{{page.previous.title}}</span>
+        </button>
+      </a>
+      {% endif %}
+      {% if page.next.url %}
+      <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip"
+        data-placement="top" title="{{page.next.title}}">
+        <button class="next">
+          Next<br>
+          <span>{{page.next.title}}</span>
+        </button>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+</main>
