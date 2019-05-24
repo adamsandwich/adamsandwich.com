@@ -35,7 +35,6 @@ function y(p) {
   var t = p + (z() * 2 - 1.1) * f;
   return (t > h || t < 0) ? y(p) : t;
 }
-document.body.ontouchstart = i;
 
 window.onresize = function () {
   w = window.innerWidth,
@@ -57,6 +56,13 @@ ripple.addEventListener('animationend', function () {
   ripple.classList.remove('ripple_active');
 });
 document.body.addEventListener('click', function () {
+  i();
+  if (menuList_flag) {
+    menuList.classList.remove('menu--list_zoomin')
+    menuList_flag = false;
+  }
+}, true)
+document.body.addEventListener('touchstart', function () {
   i();
   if (menuList_flag) {
     menuList.classList.remove('menu--list_zoomin')
