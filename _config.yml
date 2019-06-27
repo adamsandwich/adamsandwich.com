@@ -41,7 +41,11 @@ kramdown:
       line_numbers: true
       start_line: 1
 paginate: 5
-plugins: [jekyll-paginate, jekyll-toc]
+plugins: [
+  jekyll-paginate, 
+  jekyll-toc,
+  jekyll-sitemap
+]
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
