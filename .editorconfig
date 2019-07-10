@@ -18,4 +18,3 @@ trim_trailing_whitespace = false
 
 # 文件是否以一个空白行结尾 [true | false]
 insert_final_newline = true
-
