@@ -3,6 +3,7 @@ layout: post
 title: "如何更换 BOSE QC 35 头梁和耳垫"
 date: 2019-06-17 17:46:00 +0800
 tags: BOSE 维修
+comments: true
 toc: true
 ---
 
