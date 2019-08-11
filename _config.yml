@@ -17,9 +17,10 @@ title: Adamsandwich blog
 author: Adamsandwich
 email: adamsandwich@outlook.com
 keyword: "adamsandwich, Adamsandwich Blog, 博客, 个人网站, 互联网, Web"
-description: >- # this means to ignore newlines until "baseurl:"
-  I`m a full stack engineer which means if you give me one more task my stack will overflow.
-  Code never lies, comments sometimes do.
+descriptions: [
+  'I`m a full stack engineer which means if you give me one more task my stack will overflow.',
+  'Code never lies, comments sometimes do.'
+]
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://adamsandwich.com" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
