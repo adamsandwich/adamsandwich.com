@@ -9,11 +9,11 @@ toc: true
 
 ## 初识
 如果你从事前端开发一定对 Service Workers 有所耳闻。简单来说，它就是一个能在后台运行的与网页或者说 DOM 没有关联的脚本并且能提供开箱即用的功能。列如网络请求代理、推送通知和后台同步。Service Workers 能够确保用户能有丰富的离线体验。  
-你可以很容易想象出 Service Worker 就像一个处于客户端和服务端的人--中间人，将所有请求传递给服务端。当所有请求都通过 Service Worker 时他将有能力拦截请求。  
+你可以很容易想象出 Service Worker 就像一个处于客户端和服务端的人——中间人，将所有请求传递给服务端。当所有请求都通过 Service Worker 时他将有能力拦截请求。  
 
 ![](/assets/img/2019-08-20-understanding-service-workers-and-caching-strategies/service-worker-as-the-middle-man.png)
 
-Service Workers 可以说很像 Javascript 只是没有与 DOM 交互的能力。他们运行在不同的线程上，可以通过 `postMessage` API 访问 DOM 。如果你打算构建渐进式 Web 应用 (PWA) 事先理解Service Workers 和缓存策略是非常重要的。  
+Service Workers 可以说很像 Javascript 只是没有与 DOM 交互的能力。他们运行在不同的线程上，可以通过 `postMessage` API 访问 DOM 。如果你打算构建渐进式 Web 应用 (PWA) 事先理解 Service Workers 和缓存策略是非常重要的。  
 
 > Service Workers 不是 Web Workers 。Web Workers 是运行再不同线程上用于执行密集型计算防止阻塞主线程的事件循环因此不会导致 UI 绘制缓慢。
 
