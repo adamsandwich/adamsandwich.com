@@ -1,0 +1,3 @@
+[submodule "themes/atlas"]
+	path = themes/atlas
+	url = git@github.com:adamsandwich/atlas.git
