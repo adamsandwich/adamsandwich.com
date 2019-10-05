@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "start": "hexo clean && hexo server"
+    "start": "hexo clean && hexo server",
+    "build": "hexo clean && hexo g"
   },
   "hexo": {
     "version": "3.9.0"
