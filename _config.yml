@@ -84,6 +84,7 @@ theme: atlas
 deploy:
   type:
 
+disqus: adamsandwich
 
 prism_plugin:
   mode: 'preprocess'    # realtime/preprocess
