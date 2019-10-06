@@ -1,7 +1,8 @@
 ---
 title: "初识 Service Workers 和缓存策略"
 date: 2019-08-20 21:20:07
-tags: Javascript
+tags:
+  - Javascript
 ---
 
 ## 初识
