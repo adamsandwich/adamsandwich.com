@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "hexo clean && hexo server",
-    "build": "hexo clean && hexo g"
+    "build": "hexo g"
   },
   "hexo": {
     "version": "3.9.0"
