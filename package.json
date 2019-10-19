@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "hexo server",
-    "build": "hexo g"
+    "build": "hexo g && yarn font-minify",
+    "font-minify": "gulp font-minify"
   },
   "hexo": {
     "version": "3.9.0"
@@ -23,5 +24,8 @@
     "hexo-server": "^0.3.3",
     "live2d-widget-model-hijiki": "^1.0.5"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-fontmin": "^0.7.4"
+  }
 }
