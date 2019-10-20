@@ -1,7 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-const fontmin = require('gulp-fontmin')
+const fontmin = require('@adamsandwich/gulp-fontmin')
 const gulp = require('gulp')
+const log = require('fancy-log')
 
 const SOURCE_PATH = 'public'
 
@@ -50,7 +51,7 @@ const readString = (pathNames) => {
 }
 
 const TEXT = readString(FONT_PATHS)
-console.log(TEXT.length)
+log(`${TEXT.length} unique character`)
 
 gulp.task('font-minify', function () {
   const sourceDir = path.join(__dirname, 'public/scripts/fonts/*.ttf')
@@ -62,5 +63,5 @@ gulp.task('font-minify', function () {
       text: TEXT,
     }))
     .pipe(gulp.dest(destDir))
-    .on('end', () => console.log('font-minify done!'))
+    .on('end', () => log('font-minify done!'))
 })
