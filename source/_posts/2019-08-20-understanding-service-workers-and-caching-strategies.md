@@ -45,14 +45,14 @@ if ('serviceWorker' in navigator) {
 
 ```javascript
 const CACHE_NAME = 'adamsandwich.com-cache-V1';
-const URLS_To_CACHE = [
+const URLS_TO_CACHE = [
     '/main.css',
-    '/main.js'
+    '/main.js',
 ];
 
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open()
+        caches.open(CACHE_NAME)
             .then(cache => {
                 return cache.addAll(URLS_TO_CACHE);
             })
@@ -71,10 +71,13 @@ self.addEventListener('activate', event => {
                 return Promise.all(
                     cacheNames.filter((cacheName => {
                         // 如果需要移去缓存返回 true ，但缓存会在源对象中共享
+                        if (cacheName == '') {
+                            return true;
+                        }
                     }).map(cacheName => {
                         return caches.delete(cacheName);
                     }))
-                )
+                );
             }))
     );
 });
@@ -92,7 +95,9 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                if (response) return response;
+                if (response) {
+                    return response;
+                }
                 return fetch(event.request);
             })
     );

@@ -5,7 +5,8 @@
   "scripts": {
     "start": "hexo server",
     "build": "hexo g && yarn font-minify",
-    "font-minify": "gulp font-minify"
+    "font-minify": "gulp font-minify",
+    "lint": "eslint --ext md ."
   },
   "hexo": {
     "version": "3.9.0"
@@ -26,6 +27,9 @@
   },
   "devDependencies": {
     "@adamsandwich/gulp-fontmin": "^0.8.1",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-plugin-markdown": "^1.0.1",
     "fancy-log": "^1.3.3",
     "gulp": "^4.0.2"
   }
