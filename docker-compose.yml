@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  nginx:
+    restart: always
+    container_name: adamsandwich.com
+    image: nginx:latest
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - 8000:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/log:/var/log/nginx
+      - ./nginx/mime.types:/usr/local/nginx/conf/mime.types:ro
+      - ./public:/usr/share/nginx/html:ro
+    command: /bin/bash -c "nginx -g 'daemon off;'"
