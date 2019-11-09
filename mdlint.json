@@ -1,0 +1,15 @@
+{
+    "excludeFiles": [],
+    "rules": {
+        "space-round-alphabet": 2,
+        "space-round-number": 2,
+        "no-empty-code-lang": 2,
+        "no-empty-delete": 2,
+        "no-empty-url": 2,
+        "no-empty-list": 2,
+        "no-empty-code": 2,
+        "no-empty-inlinecode": 2,
+        "no-empty-blockquote": 2,
+        "no-space-in-inlinecode": 2
+    }
+}
