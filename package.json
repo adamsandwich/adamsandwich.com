@@ -6,7 +6,9 @@
         "start": "hexo server",
         "build": "hexo g && yarn font-minify",
         "font-minify": "gulp font-minify",
-        "lint": "eslint --ext md . && lint-md ./source"
+        "lint": "yarn lint:js && yarn lint:md",
+        "lint:js": "eslint --ext md . --fix",
+        "lint:md": "lint-md ./source --fix"
     },
     "hexo": {
         "version": "4.0.0"
