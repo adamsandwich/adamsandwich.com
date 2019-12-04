@@ -27,8 +27,8 @@ no crontab for root
 $ crontab -e
 ```
 
-add `0 */12 * * * root test -x /usr/bin/certbot  -a \! -d /run/systemd/system &&  perl -e 'sleep int(rand(43200))' &&  certbot -q renew` to crontab file
+add `0 */12 * * * root certbot renew --post-hook "systemctl restart nginx"` to crontab file
 
 ## 它是如何运作的
 
-这个 cron 任务会每天触发两次更新证书。`certbot -q renew` 会检查证书是否在接下来的 30 过期。如果会过期接着它会静默更新。如果证书不会过期它不会执行其他操作。在更新证书时，它将使用证书创建过程中提供的相同信息，如电子邮件地址、域名、web 服务器根路径等。
+这个 cron 任务会每天触发两次更新证书。`certbot renew` 会检查证书是否在接下来的 30 天过期。如果会过期接着它会更新。如果证书不会过期它不会执行其他操作。在更新证书时，它将使用证书创建过程中提供的相同信息，如电子邮件地址、域名、web 服务器根路径等。
