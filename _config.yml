@@ -111,3 +111,20 @@ live2d:
       height: 300         # 高度
     mobile:
       show: true   # 在移动设备上是否开启live2d
+
+feed:
+  type:
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml
+  limit: false
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: ./source/icon-rss.png
+  autodiscovery: true
+  template:
