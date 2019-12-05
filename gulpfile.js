@@ -57,9 +57,9 @@ const TEXT = readString(FONT_PATHS)
 log(`${TEXT.length} unique character`)
 
 gulp.task('font-minify', () => {
-  const sourceDir = path.join(__dirname, 'public/scripts/fonts/*.ttf')
-  const backupDir = path.join(__dirname, 'public/scripts/fonts/.fontMinify')
-  const destDir = path.join(__dirname, 'public/scripts/fonts')
+  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/scripts/fonts/*.ttf`)
+  const backupDir = path.join(__dirname, `${SOURCE_PATH}/scripts/fonts/.fontMinify`)
+  const destDir = path.join(__dirname, `${SOURCE_PATH}/scripts/fonts`)
   return gulp.src(sourceDir)
     .pipe(gulp.dest(backupDir))
     .pipe(fontmin({
@@ -70,7 +70,7 @@ gulp.task('font-minify', () => {
 })
 
 gulp.task('assets-hash', () => {
-  const sourceDir = path.join(__dirname, 'public/scripts')
+  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/scripts`)
   return gulp.src(`${sourceDir}/**/*.{css,js}`)
     .pipe(gulp.dest(sourceDir))
     .pipe(rev())
@@ -80,21 +80,20 @@ gulp.task('assets-hash', () => {
 })
 
 gulp.task('html-hash', () => {
-  const sourceDir = path.join(__dirname, 'public/scripts')
+  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/scripts`)
   const assetsManifest = gulp.src(`${sourceDir}/assets-rev.json`)
-  return gulp.src(`public/**/*.html`)
+  return gulp.src(`${SOURCE_PATH}/**/*.html`)
     .pipe(revRewrite({ manifest: assetsManifest }))
-    .pipe(gulp.dest('public'))
+    .pipe(gulp.dest(SOURCE_PATH))
 })
 
 
 gulp.task('html-minify', () => {
-  const sourceDir = path.join(__dirname, 'public/scripts')
-  return gulp.src(`public/**/*.html`)
+  return gulp.src(`${SOURCE_PATH}/**/*.html`)
     .pipe(htmlmin({
       collapseWhitespace: true
     }))
-    .pipe(gulp.dest('public'))
+    .pipe(gulp.dest(SOURCE_PATH))
 });
 
-gulp.task('default',gulp.series('font-minify', 'assets-hash', 'html-hash', 'html-minify'));
+gulp.task('default', gulp.series('font-minify', 'assets-hash', 'html-hash', 'html-minify'));
