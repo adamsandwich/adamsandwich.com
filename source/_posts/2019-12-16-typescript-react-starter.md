@@ -68,7 +68,7 @@ yarn start
 
 我们如下书写 `<Hello name="Adam" enthusiasmLevel={3} />`，这个组件会渲染如下示例 `<div>Hello Adam!!!</div>`。如果 enthusiasmLevel 未说明默认显示一个感叹号。如果 enthusiasmLevel 为零或负数应该抛出一个异常。
 
-```tsx
+```ts
 // src/components/Hello.tsx
 
 import * as React from 'react';
@@ -106,7 +106,7 @@ function getExclamationMarks(numChars: number) {
 
 使用函数是 React 允许我们制造组件的唯二方式。如果你希望可以使用类组件重写示例如下。
 
-```tsx
+```ts
 class Hello extends React.Component<Props, object> {
   render() {
     const { name, enthusiasmLevel = 1 } = this.props;
@@ -132,7 +132,7 @@ class Hello extends React.Component<Props, object> {
 
 现在我们已经完成组件，让我们进入 `index.tsx` 然后用 `<Hello ... />` 替换 `<App />` 中的渲染。
 
-```tsx
+```ts
 import Hello from './components/Hello';
 
 ReactDOM.render(
@@ -159,7 +159,7 @@ TypeScript 也有一个尾语法 `!`，会移除前面表达式的 `null` 和 `u
 2. 初始化 `this.state` 基于我们在构造函数的赋值
 3. 为我们的按钮创建两个事件处理器 (`onIncrement` 和 `onDecrement`)。
 
-```tsx
+```ts
 // src/components/StatefulHello.tsx
 
 import * as React from "react";
@@ -243,7 +243,7 @@ function getExclamationMarks(numChars: number) {
 
 create-react-app 使用的工具 (Webpack 和各种 loader) 允许我们导入我们需要的样式表。当构建的时候，任何导入的 .css 文件都会被串联到输出文件。所以我们在 `src/components/Hello.tsx` 添加如下导入。
 
-```tsx
+```ts
 import './Hello.css';
 ```
 
@@ -275,7 +275,7 @@ yarn add -D enzyme @types/enzyme enzyme-adapter-react-16 @types/enzyme-adapter-r
 
 在编写测试之前我们还需要配置 Enzyme 来适配 React 16。我们创建一个叫 `src/setupTests.ts` 的文件，在运行测试的时候它将被自动加载。
 
-```tsx
+```ts
 import * as enzyme from 'enzyme';
 import * as Adapter from 'enzyme-adapter-react-16';
 
@@ -285,7 +285,7 @@ enzyme.configure({ adapter: new Adapter() });
 现在我们将 Enzyme 设置完毕，让我们开始编写测试！
 让我们创建一个叫 `src/components/Hello.test.tsx` 的文件，毗邻之前创建的 `Hello.tsx` 。
 
-```tsx
+```ts
 // src/components/Hello.test.tsx
 
 import * as React from 'react';
@@ -358,7 +358,7 @@ yarn add redux react-redux @types/react-redux
 
 我们需要定义 Redux 存储状态的模型。为此我们创建一个叫 `src/types/index.tsx` 的文件，它将包含我们在应用中用到的类型定义。
 
-```tsx
+```ts
 // src/types/index.tsx
 
 export interface StoreState {
@@ -374,7 +374,7 @@ export interface StoreState {
 
 让我们开始创建一组消息类型，让应用程序可以响应 `src/constants/index.tsx` 。
 
-```tsx
+```ts
 // src/constants/index.tsx
 
 export const INCREMENT_ENTHUSIASM = 'INCREMENT_ENTHUSIASM';
@@ -388,7 +388,7 @@ export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 `const`/`type` 模式允许我们使用 TypeScript 的 string 字面类型使其更易访问和可重构。
 接下来我们将创建一组 action 和 function 可以在 `src/actions/index.tsx` 中创建 action。
 
-```tsx
+```ts
 import * as constants from '../constants';
 
 export interface IncrementEnthusiasm {
@@ -425,7 +425,7 @@ Reducer 只是通过创建应用状态变化的副本的函数，但是没有*�
 
 我们的 reducer 将放在 `src/reducers/index.tsx` 目录下。它的作用是确保增加使 enthusiasm 等级提高 1 ，减少使 enthusiasm 等级降低 1， 但该等级永远不低于 1 。
 
-```tsx
+```ts
 // src/reducers/index.tsx
 
 import { EnthusiasmAction } from '../actions';
@@ -457,7 +457,7 @@ export function enthusiasm(state: StoreState, action: EnthusiasmAction): StoreSt
 首先我们更新 `src/components/Hello.tsx` 让它可以改变状态。
 我们将添加两个可选的回调属性给 `Props` 分别叫 `onIncrement` 和 `onDecrement`
 
-```tsx
+```ts
 export interface Props {
   name: string;
   enthusiasmLevel?: number;
@@ -468,7 +468,7 @@ export interface Props {
 
 接下来我们在组件中为这些回调绑定两个按钮。
 
-```tsx
+```ts
 function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: Props) {
   if (enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D');
@@ -492,7 +492,7 @@ function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: Props) {
 
 现在我们的组件已经更新了，我们准备用 container 包装它。我们创建一个叫 `src/containers/Hello.tsx` 的文件伴随一些导入。
 
-```tsx
+```ts
 import Hello from '../components/Hello';
 import * as actions from '../actions/';
 import { StoreState } from '../types/index';
@@ -508,7 +508,7 @@ import { connect, Dispatch } from 'react-redux';
 我们的 `Hello` 组件, 另一方面期待一个 `name` 和一个 `enthusiasmLevel`
 `mapStateToProps` 将从 store 中获取相关数据，并在必要时对组件的 props 进行调整。
 
-```tsx
+```ts
 export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
   return {
     enthusiasmLevel,
@@ -520,7 +520,7 @@ export function mapStateToProps({ enthusiasmLevel, languageName }: StoreState) {
 注意 `mapStateToProps` 只创建 `Hello` 组件所期望的 4 个属性中的 2 个。也就是说我们任然期待传递 `onIncrement` 和 `onDecrement` 两个回调。
 `mapDispatchToProps` 是一个接受 dispatcher 函数的函数。这个 dispatcher 函能传递 action 到我们的 store 中来制造更新，所以我们可以创建一对回调根据需要调用。
 
-```tsx
+```ts
 export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>) {
   return {
     onIncrement: () => dispatch(actions.incrementEnthusiasm()),
@@ -531,13 +531,13 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>)
 
 最后我们准备调用 `connect` 。`connect` 首先接受 `mapStateToProps` 和 `mapDispatchToProps` ，然后然会返回另一个可以包装组件函数。最终我们的 container 定义如下：
 
-```tsx
+```ts
 export default connect(mapStateToProps, mapDispatchToProps)(Hello);
 ```
 
 当我们完成时，文件看起来如下：
 
-```tsx
+```ts
 // src/containers/Hello.tsx
 
 import Hello from '../components/Hello';
@@ -566,7 +566,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Hello);
 
 回到 `src/index.tsx`，为了把它们放在一起我们需要创建一个 store 包含初始的 state，还要设置好所有的 reducer。
 
-```tsx
+```ts
 import { createStore } from 'redux';
 import { enthusiasm } from './reducers/index';
 import { StoreState } from './types/index';
@@ -580,14 +580,14 @@ const store = createStore<StoreState>(enthusiasm, {
 您可能已经猜到，`store`是应用程序全局状态的中心存储。
 接下来我们将用 `./src/containers/Hello` 替换 `./src/components/Hello` ，同时使用 react-redux 的 `Provider` 来将 container 中的 props 串起来。
 
-```tsx
+```ts
 import Hello from './containers/Hello';
 import { Provider } from 'react-redux';
 ```
 
 然后通过 `Provider` 的属性传递 `store`
 
-```tsx
+```ts
 ReactDOM.render(
   <Provider store={store}>
     <Hello />
