@@ -421,7 +421,7 @@ export function decrementEnthusiasm(): DecrementEnthusiasm {
 ### 添加一个 reducer
 
 Reducer 只是通过创建应用状态变化的副本的函数，但是没有*副作用*。
-换句话说，它们就是*[纯函数](https://en.wikipedia.org/wiki/Pure_function)*
+换句话说，它们就是[*纯函数*](https://en.wikipedia.org/wiki/Pure_function)
 
 我们的 reducer 将放在 `src/reducers/index.tsx` 目录下。它的作用是确保增加使 enthusiasm 等级提高 1 ，减少使 enthusiasm 等级降低 1， 但该等级永远不低于 1 。
 
