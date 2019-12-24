@@ -250,7 +250,7 @@ import './Hello.css';
 ## Writing tests with Jest
 
 我们关于 Hello 组件有一组确定的假设，下面重申一遍：
-> - 当我们如下使用 `<Hello name="Daniel" enthusiasmLevel={3} />`, 组件应该渲染如下 `<div>Hello Daniel!!!</div>`
+> - 当我们如下使用 `<Hello name="Adam" enthusiasmLevel={3} />`, 组件应该渲染如下 `<div>Hello Adam!!!</div>`
 > - 如果 enthusiasmLevel 没有指定，组件应该默认显示一个感叹号
 > - 如果 enthusiasmLevel 是零或者负数，应该抛出异常
 
@@ -613,3 +613,6 @@ eject 命令是无法撤回的，所以在 eject 之前 commit 一下是个好�
 
 如果你像了解更多关于 Redux ，可以访问 [Redux 官方文档](http://redux.js.org/)，同样 MobX 是 [MobX 官方文档](https://mobx.js.org/)
 在某些情况下，可能需要路由。有几种解决方案，但  [react-router](https://github.com/ReactTraining/react-router) 可能对于 Redux 项目是最受欢迎的，同时还需要 [react-router-redux](https://github.com/reactjs/react-router-redux) 来连接它们。
+
+关联阅读:
+> [https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter)
