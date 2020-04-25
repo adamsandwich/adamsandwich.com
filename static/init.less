@@ -1,0 +1,68 @@
+@lightColor: #e8eaed;
+@lightBackgroundColor: #f2f2f2;
+
+@darkColor: #9aa0a6;
+@darkBackgroundColor: #202124;
+@import "markdown.less";
+
+// @font-face {
+//   font-family: "Sarasa-Mono-SC";
+//   src: url("./fonts/sarasa-mono-sc.ttf") format("truetype");
+//   font-weight: normal;
+//   font-style: normal;
+//   font-display: swap;
+// }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: Sarasa-Mono-SC !important;
+  @media (prefers-color-scheme: dark) {
+    color: @darkColor;
+    background-color: @darkBackgroundColor;
+  }
+
+  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+    color: @lightColor;
+    background-color: @lightBackgroundColor;
+  }
+}
+
+* {
+  font-family: Sarasa-Mono-SC !important;
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landscape {
+  flex-direction: row;
+}
+
+.portrait {
+  flex-direction: column;
+}
+
+a,
+a:hover,
+a:link,
+a:visited {
+  @media (prefers-color-scheme: dark) {
+    color: @darkColor;
+  }
+
+  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+    color: @lightColor;
+  }
+
+  text-decoration: none;
+}
