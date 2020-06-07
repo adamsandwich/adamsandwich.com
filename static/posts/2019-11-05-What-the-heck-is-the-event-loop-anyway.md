@@ -12,7 +12,7 @@ tags:
 即使经过一段时间的学习我依旧对 Javascript 是如何运行的感到费解，相信 JSer 都有所感触为什么会这样运行。我听说过 V8 引擎是 Chrome 中运行 Javascript 的运行环境，但并不知道它究竟做了什么。我知道 Javascript 是单线程的，因为我还在使用回调函数。如果你在 Google 搜索 javascript 会得到它是一个单线程（因为 Service Worker、Web Worker 的存在严格来说不是）、非阻塞、异步、解释型脚本语言的解释，对于初学者而言 Javascript 总是执行的很诡异，经过相当长时间的摸索，自认为稍许 get 到它了。
 
 让我们看下 Javascript 的运行环境，比如说 V8 Chrome 的 Javascript 运行时，下图是一个 Javascript 运行时的示意图，堆记录内存的分配，栈记录回调函数的栈帧，但是如果你 clone V8 的源码会发现 setTimeout, DOM, HTTP 请求这些并不在其中，这令我很吃惊，因为当你想要异步编程的时候，这是你首先要考虑使用的东西，但是现在我知道了这才是最重要的部分。
-![](/images/2019-11-05-What-the-heck-is-the-event-loop-anyway/javascript-runtime.png)
+![javascript runtime](/posts/2019-11-05-What-the-heck-is-the-event-loop-anyway/javascript-runtime.png)
 
 首先是 V8 运行时，然后是浏览器提供的 Web APIs 诸如 DOM, AJAX, setTimeout 然后才是令人困惑的事件循环 (Eventloop) 和回调队列 (call stack)，这些术语你一定都听过，但可能未必理解他们是如何成为一个整体的。
 我先介绍下这些术语，也许有些人会厌烦可以跳过此段。总的来说 Javascript 是单线程的，他只有一个调用栈，每次只能做一件事 one thread == one call stack == one thing at a time，我们先从一个简单的示例开始，我们有几个函数，一个将两个函数相乘的 `multiply`，一个调用前者的平方函数 `square`，还有一个打印函数 `printSquare` 它调用 `square` 然后打印结果。如果我们运行它，`call stack` 基本是一个记录当前程序所在位置的数据结构，如果我们进入某个函数它会被放在 stack 里，如果它离开这个函数就会被弹出 stack，这也 stack 的定义，如果你运行这个文件会有个一个主函数 `main` 指代这个文件自身，它被首先放入栈中，然后我们有一些函数的定义声明，然后是 `printSquare(4)` 它是一个函数调用，然后我们把它放入 stack，然后是 `square(n)`，`multiply(n ,n)`，然后我们得到返回 `multiply(n ,n)` 弹出，`square(n)` 弹出，调用 `console.log(squared)` 入栈紧接着弹出，`printSquare(4)` 弹出，然后就执行完成了。
@@ -31,7 +31,7 @@ function printSquare(n) {
 }
 printSquare(4);
 ```
-![](/images/2019-11-05-What-the-heck-is-the-event-loop-anyway/call-stack.png)
+![call stack](/posts/2019-11-05-What-the-heck-is-the-event-loop-anyway/call-stack.png)
 
 在 Web 开发中你肯定遇到过类似的情况， foo 函数抛出一个异常，将整个调用栈都打印出来。
 ```javascript
@@ -46,7 +46,7 @@ function baz () {
 }
 baz();
 ```
-![](/images/2019-11-05-What-the-heck-is-the-event-loop-anyway/chrome-error.png)
+![chrome error](/posts/2019-11-05-What-the-heck-is-the-event-loop-anyway/chrome-error.png)
 
 同时这也会造成内存泄漏，例如下方的示例然后你会得到 chrome 的报错 `Uncaught RangeError: Maximum call stack size exceeded` 。
 ```javascript

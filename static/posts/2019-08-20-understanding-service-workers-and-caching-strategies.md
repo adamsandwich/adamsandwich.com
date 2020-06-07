@@ -9,7 +9,7 @@ tags:
 如果你从事前端开发一定对 Service Workers 有所耳闻。简单来说，它就是一个能在后台运行的与网页或者说 DOM 没有关联的脚本并且能提供开箱即用的功能。列如网络请求代理、推送通知和后台同步。Service Workers 能够确保用户能有丰富的离线体验。
 你可以很容易想象出 Service Worker 就像一个处于客户端和服务端的人——中间人，将所有请求传递给服务端。当所有请求都通过 Service Worker 时他将有能力拦截请求。
 
-![](/images/2019-08-20-understanding-service-workers-and-caching-strategies/service-worker-as-the-middle-man.png)
+![service worker as the middle man](/posts/2019-08-20-understanding-service-workers-and-caching-strategies/service-worker-as-the-middle-man.png)
 
 Service Workers 可以说很像 Javascript 只是没有与 DOM 交互的能力。他们运行在不同的线程上，可以通过 `postMessage` API 访问 DOM 。如果你打算构建渐进式 Web 应用 (PWA) 事先理解 Service Workers 和缓存策略是非常重要的。
 
@@ -33,7 +33,7 @@ if ('serviceWorker' in navigator) {
 在上方的代码中我们首先检查 Service Worker API 是否支持。如果支持我们将使用 Service Worker 文件的路径作为参数使用 register 方法。因而当页面加载完毕时 Service Worker 已完成注册。
 
 ## Service Worker 的生命周期
-![The life cycle of service worker](/images/2019-08-20-understanding-service-workers-and-caching-strategies/the-life-cycle-of-service-worker.png)
+![The life cycle of service worker](/posts/2019-08-20-understanding-service-workers-and-caching-strategies/the-life-cycle-of-service-worker.png)
 
 ### Install
 当 Service Worker 注册后一个 `instll` 事件被触发。我们能在 `sw.js` 文件中监听这个事件。在开始编码之前让我们先想想应该在这个事件中做什么。
