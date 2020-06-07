@@ -65,14 +65,25 @@ export default {
     }
   },
   generate: {
-     //- 为动态路由添加静态化
-    //- 静态化站点的时候动态路由是无法被感知到的
-    //- 所以可以预测性的在这里配置
-    routes: () => {
+    // 为动态路由添加静态化
+    // 静态化站点的时候动态路由是无法被感知到的
+    // 所以可以预测性的在这里配置
+    routes: async () =>  {
       // readdirSync 轻松读取目录中的所有文件
-      // '/1',
-      // '/2',
-      // '/3'
+      const fs = require("fs-extra");
+      const { promisify } = require("util");
+      const readdir = promisify(fs.readdir);
+      // 读取本地 md 文件名并按时间降序
+      let postsFilePath = await readdir("static/posts", "utf-8");
+      return postsFilePath
+        .filter(data => /\.md$/.test(data))
+        .sort((a, b) => new Date(b.slice(0, 10)) - new Date(a.slice(0, 10)))
+        .map((id) => {
+          return {
+            route: `/posts/${id.replace('.md', '')}`,
+            payload: id.replace('.md', ''),
+          }
+        })
     }
   }
 }
