@@ -11,6 +11,7 @@
 <script>
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
+import "highlight.js/styles/atom-one-dark.css";
 
 export default {
   components: {
@@ -26,7 +27,7 @@ export default {
     // 一定要有，这样才能告诉 webpack 以下的代码是要运行在服务端的，
     // 不然客户端可没有 fs，执行会出错。
     if (process.server) {
-      var hljs = require('highlight.js')
+      var hljs = require("highlight.js");
       // 引入 markdown 处理工具
       const md = require("markdown-it")({
         breaks: true, // 转化段落里的 \n 成 <br>
@@ -34,10 +35,26 @@ export default {
         highlight: function(str, lang) {
           if (lang && hljs.getLanguage(lang)) {
             try {
-              return hljs.highlight(lang, str, true).value;
+              // 得到经过highlight.js之后的html代码
+              const preCode = hljs.highlight(lang, str, true).value;
+              // 以换行进行分割
+              const lines = preCode.split(/\n/).slice(0, -1);
+              let html = "";
+              // 添加自定义行号
+              if (lines.length > 1) {
+                html += lines
+                  .map((item, index) => {
+                    return `<li><span class="line-num" data-line="${index +
+                      1}"></span>${item}</li>`;
+                  })
+                  .join("");
+              } else {
+                html += lines;
+              }
+              html = "<ol>" + html + "</ol>";
+              return '<pre class="hljs"><code>' + html + "</code></pre>";
             } catch (__) {}
           }
-
           return ""; // 使用额外的默认转义
         }
       });

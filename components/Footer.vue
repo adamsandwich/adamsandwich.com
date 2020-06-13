@@ -40,5 +40,8 @@ footer {
   a {
     color: #337ab7 !important;
   }
+  .center{
+    color: #666;
+  }
 }
 </style>

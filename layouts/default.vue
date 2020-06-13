@@ -5,6 +5,5 @@
 </template>
 
 <style lang="less">
-@import '~static/normalize.css';
-@import '~static/init.less';
+@import "~static/init.less";
 </style>
