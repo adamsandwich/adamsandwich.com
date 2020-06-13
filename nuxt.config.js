@@ -8,12 +8,17 @@ export default {
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { name: 'author', content: 'adamsandwich@outlook.com' },
+      { hid: 'keywords', name: 'keywords', content: 'adamsandwich, blog, 博客, 个人网站, 互联网, Web' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    script: [
+      { src: '/L2Dwidget.min.js', async: false },
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -23,12 +28,14 @@ export default {
   ** Global CSS
   */
   css: [
-    '~static/normalize.css'
+    '~/static/normalize.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+
+    { src: '~/plugins/live2d.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
