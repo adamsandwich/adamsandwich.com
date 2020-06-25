@@ -69,8 +69,6 @@ export default {
 <style scoped lang="less">
 .entity {
   margin: 0 auto;
-  min-height: 100vh;
-  width: 100vw;
   flex-direction: column;
   justify-content: flex-start;
   text-align: center;
