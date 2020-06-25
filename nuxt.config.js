@@ -5,11 +5,11 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Adamsandwich\'s blog',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      { hid: 'description', name: 'description', content: 'Adamsandwich\'s blog' },
       { name: 'author', content: 'adamsandwich@outlook.com' },
       { hid: 'keywords', name: 'keywords', content: 'adamsandwich, blog, 博客, 个人网站, 互联网, Web' },
     ],
