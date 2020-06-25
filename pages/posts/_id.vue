@@ -3,6 +3,7 @@
     <Header />
     <main class="container portrait">
       <article class="article" v-html="content"></article>
+      <div class="article" id="disqus_thread"></div>
     </main>
     <Footer />
   </div>
@@ -12,6 +13,8 @@
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
 import "highlight.js/styles/atom-one-dark.css";
+import "disqusjs/dist/disqusjs.css";
+import DisqusJS from "disqusjs";
 
 export default {
   components: {
@@ -22,6 +25,23 @@ export default {
     return {
       content: ""
     };
+  },
+  created: function() {
+    if (process.client) {
+      console.log("set");
+      var dsqjs = new DisqusJS({
+        shortname: "adamsandwich",
+        siteName: "adamsandwich",
+        identifier: "",
+        url: "",
+        title: "",
+        api: "",
+        apikey:
+          "LVnkhW6J6r6rSCxfDbejsy7YMoIu05KEPeufipI1WjMA8cFJoIgntDlzAzyzOrnt",
+        admin: "",
+        adminLabel: ""
+      });
+    }
   },
   async asyncData({ params }) {
     // 一定要有，这样才能告诉 webpack 以下的代码是要运行在服务端的，
@@ -81,6 +101,9 @@ export default {
 <style scoped lang="less">
 @import "~static/init.less";
 main {
+  margin-top: 1rem;
+}
+#disqus_thread {
   margin-top: 1rem;
 }
 .article {
