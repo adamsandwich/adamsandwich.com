@@ -12,6 +12,7 @@ export default {
       { hid: 'description', name: 'description', content: 'Adamsandwich\'s blog' },
       { name: 'author', content: 'adamsandwich@outlook.com' },
       { hid: 'keywords', name: 'keywords', content: 'adamsandwich, blog, 博客, 个人网站, 互联网, Web' },
+      { hid: 'google-site-verification', name: 'google-site-verification', content: 'iJHrfNU6l9QRkLKpfbp-4UC2o-hA8Xewpjk54YZ3MYc' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -34,7 +35,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-
     { src: '~/plugins/live2d.js', ssr: false },
   ],
   /*
