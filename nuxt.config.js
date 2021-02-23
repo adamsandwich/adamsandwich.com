@@ -1,6 +1,5 @@
 
 export default {
-  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -41,6 +40,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/google-analytics'
   ],
   /*
   ** Nuxt.js modules
@@ -92,5 +92,8 @@ export default {
           }
         })
     }
+  },
+  googleAnalytics: {
+    id: 'UA-131159968-1',
   }
 }
