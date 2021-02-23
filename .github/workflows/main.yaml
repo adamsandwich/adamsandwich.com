@@ -21,7 +21,7 @@ jobs:
           node-version: "10.x"
 
       - name: Build project
-        run: yarn && yarn generate
+        run: yarn && yarn generate && yarn minify
 
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.0

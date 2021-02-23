@@ -96,4 +96,4 @@ gulp.task('html-minify', () => {
     .pipe(gulp.dest(SOURCE_PATH))
 });
 
-gulp.task('default', gulp.series('font-minify', 'assets-hash', 'html-hash', 'html-minify'));
+gulp.task('default', gulp.series('font-minify', 'assets-hash', 'html-minify'));
