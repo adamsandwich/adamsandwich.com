@@ -56,7 +56,15 @@ export default {
     {
       test: /\.less$/,
       loaders: 'style-loader!css-loader!less-loader'
-    }
+    },
+    {
+      test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+      loader: 'url-loader',
+      query: {
+        limit: 1000, // 1kB
+        name: 'fonts/[name].[hash:7].[ext]'
+      }
+    },
   ],
   /*
   ** Build configuration
