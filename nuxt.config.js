@@ -72,7 +72,20 @@ export default {
       }
     },
     build: {
-      publicPath: 'https://adamsandwich.com'
+      publicPath: 'https://adamsandwich.com/',
+      extractCSS: true,
+      optimization: {
+        splitChunks: {
+          cacheGroups: {
+            styles: {
+              name: 'styles',
+              test: /\.(css|vue)$/,
+              chunks: 'all',
+              enforce: true
+            }
+          }
+        }
+      },
     }
   },
   generate: {
