@@ -70,6 +70,9 @@ export default {
         console: true,
         fs: 'empty',
       }
+    },
+    build: {
+      publicPath: 'https://adamsandwich.com'
     }
   },
   generate: {
