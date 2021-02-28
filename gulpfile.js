@@ -6,6 +6,7 @@ const rev = require('gulp-rev')
 const revRewrite = require('gulp-rev-rewrite')
 const gulp = require('gulp')
 const log = require('fancy-log')
+const del = require('del')
 
 const SOURCE_PATH = 'dist'
 
@@ -57,16 +58,22 @@ const TEXT = readString(FONT_PATHS)
 log(`${TEXT.length} unique character`)
 
 gulp.task('font-minify', () => {
-  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/*.ttf`)
-  const backupDir = path.join(__dirname, `${SOURCE_PATH}/.fontMinify`)
-  const destDir = path.join(__dirname, `${SOURCE_PATH}/`)
+  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/*.ttf`)
+  const backupDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/.fontMinify`)
+  const destDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/`)
   return gulp.src(sourceDir)
-    .pipe(gulp.dest(backupDir))
+    // .pipe(gulp.dest(backupDir))
     .pipe(fontmin({
       text: TEXT,
     }))
     .pipe(gulp.dest(destDir))
     .on('end', () => log('font-minify done!'))
+})
+
+gulp.task('clean-font-cache', () => {
+  return del([
+    `${SOURCE_PATH}/sarasa-mono-sc-regular.ttf`,
+  ]);
 })
 
 gulp.task('assets-hash', () => {
@@ -96,4 +103,4 @@ gulp.task('html-minify', () => {
     .pipe(gulp.dest(SOURCE_PATH))
 });
 
-gulp.task('default', gulp.series('font-minify', 'assets-hash', 'html-minify'));
+gulp.task('default', gulp.series('font-minify', 'clean-font-cache', 'assets-hash', 'html-minify'));
