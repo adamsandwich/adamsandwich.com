@@ -100,7 +100,7 @@ export default {
     // 为动态路由添加静态化
     // 静态化站点的时候动态路由是无法被感知到的
     // 所以可以预测性的在这里配置
-    routes: async () =>  {
+    routes: async () => {
       // readdirSync 轻松读取目录中的所有文件
       const fs = require("fs-extra");
       const { promisify } = require("util");
