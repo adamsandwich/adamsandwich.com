@@ -29,8 +29,8 @@ export default {};
 .white {
   position: absolute;
   left: -10px;
-  width: 100%;
-  height: 1px;
+  width: 102%;
+  height: 0.3rem;
   @media (prefers-color-scheme: dark) {
     background: @darkBackgroundColor;
   }
@@ -72,31 +72,31 @@ export default {};
 
 @keyframes whiteMove {
   9% {
-    top: 38px;
+    transform: translateY(10.2vw);
   }
   14% {
-    top: 8px;
+    transform: translateY(2.5vw);
   }
   18% {
-    top: 42px;
+    transform: translateY(13vw);
   }
   22% {
-    top: 1px;
+    transform: translateY(0.1vw);
   }
   32% {
-    top: 32px;
+    transform: translateY(8vw);
   }
   34% {
-    top: 12px;
+    transform: translateY(0.3vw);
   }
   40% {
-    top: 26px;
+    transform: translateY(10.2vw);
   }
   43% {
-    top: 7px;
+    transform: translateY(0.2vw);
   }
   99% {
-    top: 30px;
+    transform: translateY(8.3vw);
   }
 }
 
