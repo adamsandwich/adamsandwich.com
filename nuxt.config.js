@@ -29,7 +29,7 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/static/normalize.css'
+    '~/static/normalize.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -107,16 +107,22 @@ export default {
       const readdir = promisify(fs.readdir);
       // 读取本地 md 文件名并按时间降序
       let postsFilePath = await readdir("static/posts", "utf-8");
-      return postsFilePath
-        .filter(data => /\.md$/.test(data))
-        .sort((a, b) => new Date(b.slice(0, 10)) - new Date(a.slice(0, 10)))
-        .map((id) => {
-          return {
-            route: `/posts/${id.replace('.md', '')}`,
-            payload: id.replace('.md', ''),
-          }
-        })
-    }
+      let routes = [
+      ];
+      routes.concat(
+        postsFilePath
+          .filter(data => /\.md$/.test(data))
+          .sort((a, b) => new Date(b.slice(0, 10)) - new Date(a.slice(0, 10)))
+          .map((id) => {
+            return {
+              route: `/posts/${id.replace('.md', '')}`,
+              payload: id.replace('.md', ''),
+            }
+          })
+      );
+      return routes;
+    },
+    fallback: '404.html',
   },
   googleAnalytics: {
     id: 'UA-131159968-1',
