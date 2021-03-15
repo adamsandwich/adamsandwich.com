@@ -109,18 +109,18 @@ export default {
       let postsFilePath = await readdir("static/posts", "utf-8");
       let routes = [
       ];
-      routes.concat(
-        postsFilePath
-          .filter(data => /\.md$/.test(data))
-          .sort((a, b) => new Date(b.slice(0, 10)) - new Date(a.slice(0, 10)))
-          .map((id) => {
-            return {
-              route: `/posts/${id.replace('.md', '')}`,
-              payload: id.replace('.md', ''),
-            }
-          })
-      );
-      return routes;
+      return routes
+        .concat(
+          postsFilePath
+            .filter(data => /\.md$/.test(data))
+            .sort((a, b) => new Date(b.slice(0, 10)) - new Date(a.slice(0, 10)))
+            .map((id) => {
+              return {
+                route: `/posts/${id.replace('.md', '')}`,
+                payload: id.replace('.md', ''),
+              }
+            })
+        );
     },
     fallback: '404.html',
   },
