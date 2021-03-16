@@ -66,7 +66,12 @@ export default {};
   color: cyan;
   filter: contrast(200%);
   text-shadow: -1px 0 0 cyan;
-  mix-blend-mode: lighten;
+  @media (prefers-color-scheme: dark) {
+    mix-blend-mode: lighten;
+  }
+  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+    mix-blend-mode: darken;
+  }
   animation: move 1.1s infinite 0.2s;
 }
 
