@@ -3,6 +3,7 @@
     <Header />
     <main id="recent-posts">
       <PostCard :key="post.conf.title" v-for="post in posts" :post="post" />
+      <!-- <Pagination :posts="posts" :currentPage="currentPage" :pageSize="pageSize"/> -->
     </main>
     <Footer />
   </div>
@@ -12,16 +13,20 @@
 import Header from "~/components/Header.vue";
 import PostCard from "~/components/PostCard.vue";
 import Footer from "~/components/Footer.vue";
+import Pagination from "~/components/Pagination.vue";
 
 export default {
   components: {
     Header,
     PostCard,
-    Footer
+    Footer,
+    Pagination,
   },
   data() {
     return {
-      posts: []
+      posts: [],
+      pageSize: 5,
+      currentPage: 1,
     };
   },
   async asyncData({}) {

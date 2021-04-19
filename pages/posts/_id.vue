@@ -19,14 +19,14 @@ import DisqusJS from "disqusjs";
 export default {
   components: {
     Header,
-    Footer
+    Footer,
   },
   data() {
     return {
-      content: ""
+      content: "",
     };
   },
-  created: function() {
+  created: function () {
     if (process.client) {
       console.log("set");
       var dsqjs = new DisqusJS({
@@ -39,7 +39,7 @@ export default {
         apikey:
           "LVnkhW6J6r6rSCxfDbejsy7YMoIu05KEPeufipI1WjMA8cFJoIgntDlzAzyzOrnt",
         admin: "",
-        adminLabel: ""
+        adminLabel: "",
       });
     }
   },
@@ -52,7 +52,7 @@ export default {
       const md = require("markdown-it")({
         breaks: true, // 转化段落里的 \n 成 <br>
         linkify: false, // 自动转化像 URL 的文本成链接
-        highlight: function(str, lang) {
+        highlight: function (str, lang) {
           if (lang && hljs.getLanguage(lang)) {
             try {
               // 得到经过highlight.js之后的html代码
@@ -64,8 +64,9 @@ export default {
               if (lines.length > 1) {
                 html += lines
                   .map((item, index) => {
-                    return `<li><span class="line-num" data-line="${index +
-                      1}"></span>${item}</li>`;
+                    return `<li><span class="line-num" data-line="${
+                      index + 1
+                    }"></span>${item}</li>`;
                   })
                   .join("");
               } else {
@@ -76,12 +77,11 @@ export default {
             } catch (__) {}
           }
           return ""; // 使用额外的默认转义
-        }
+        },
       });
       const YAML = require("yaml");
       const { promisify } = require("util");
       const fs = require("fs-extra");
-      const readdir = promisify(fs.readdir);
       const readFile = promisify(fs.readFile);
 
       let raw = await readFile(`static/posts/${params.id}.md`);
@@ -94,7 +94,7 @@ export default {
       post.content = md.render(rawData[2]);
       return { content: post.content };
     }
-  }
+  },
 };
 </script>
 

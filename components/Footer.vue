@@ -14,6 +14,7 @@
       Powered by
       <a href="https://nuxtjs.org">NUXT</a> and
       <a href="https://adamsandwich.com">Adamsandwich</a>
+      Deployed on <a href="https://www.vultr.com/?ref=7586014">Vultr</a>
     </p>
   </footer>
 </template>
