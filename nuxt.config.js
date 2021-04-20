@@ -48,6 +48,7 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/feed',
   ],
   // styleResources: {
   //   less: './**/*.less'
@@ -126,5 +127,57 @@ export default {
   },
   googleAnalytics: {
     id: 'UA-131159968-1',
+  },
+  feed: {
+    path: '/feed.xml', // The route to your feed.
+    async create(feed) { // The create function
+      feed.options = {
+        title: 'Adamsandwich\'s blog',
+        link: 'https://adamsandwich.com/feed.xml',
+        description: 'Gotta catch \'em all!'
+      }
+
+      const fs = require("fs-extra")
+      const { promisify } = require("util")
+      const readdir = promisify(fs.readdir)
+      const readFile = promisify(fs.readFile)
+      const YAML = require("yaml")
+
+      // 读取本地 md 文件名并按时间降序
+      let postsFilePath = await readdir("static/posts", "utf-8");
+      let posts = async _ => {
+        const promises = postsFilePath
+          .filter(data => /\.md$/.test(data))
+          .sort((a, b) => new Date(b.slice(0, 10)) - new Date(a.slice(0, 10)))
+          .map(async (item) => {
+            let raw = await readFile(`static/posts/${item}`)
+            raw = raw.toString()
+            let rawData = raw.split("---")
+            // 配置参数
+            let conf = YAML.parse(rawData[1])
+            feed.addItem({
+              title: conf.title,
+              id: `https://adamsandwich.com/posts/${item.replace('.md', '')}`,
+              link: `https://adamsandwich.com/posts/${item.replace('.md', '')}`,
+              description: conf.description,
+              content: conf.description,
+            })
+          })
+        return await Promise.all(promises);
+      }
+      // handling asynchronous operations
+      await posts().then(() => { })
+
+      feed.addCategory('Blog')
+
+      feed.addContributor({
+        name: 'Adamsandwich',
+        email: 'adamsandwich@outlook.com',
+        link: 'https://adamsandwich.com'
+      })
+    },
+    cacheTime: 1000 * 60 * 15, // How long should the feed be cached
+    type: 'rss2', // Can be: rss2, atom1, json1
+    data: ['Some additional data'] // Will be passed as 2nd argument to `create` function
   }
 }
