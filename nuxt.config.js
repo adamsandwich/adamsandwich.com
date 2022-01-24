@@ -10,7 +10,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: 'Adamsandwich\'s blog' },
-      { name: 'author', content: 'adamsandwich@outlook.com' },
+      { name: 'author', content: 'adamsandwich#outlook.com' },
       { hid: 'keywords', name: 'keywords', content: 'adamsandwich, blog, 博客, 个人网站, 互联网, Web' },
       { hid: 'google-site-verification', name: 'google-site-verification', content: 'iJHrfNU6l9QRkLKpfbp-4UC2o-hA8Xewpjk54YZ3MYc' },
     ],
@@ -172,7 +172,7 @@ export default {
 
       feed.addContributor({
         name: 'Adamsandwich',
-        email: 'adamsandwich@outlook.com',
+        email: 'adamsandwich#outlook.com',
         link: 'https://adamsandwich.com'
       })
     },
