@@ -7,9 +7,7 @@ const revRewrite = require('gulp-rev-rewrite')
 const gulp = require('gulp')
 const log = require('fancy-log')
 const del = require('del')
-const ttf2woff2 = require('gulp-ttf2woff2')
-
-const SOURCE_PATH = 'dist'
+const SOURCE_PATH = 'static'
 
 const readDirRecursively = (filePath, judge) => {
   let pathArray = [filePath]
@@ -59,26 +57,15 @@ const TEXT = readString(FONT_PATHS)
 log(`${TEXT.length} unique character`)
 
 gulp.task('font-minify', () => {
-  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/*.ttf`)
-  const backupDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/.fontMinify`)
-  const destDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/`)
-  return gulp.src(sourceDir)
+  const sourceTtfDir = path.join(__dirname, `${SOURCE_PATH}/*.ttf`)
+  const destDir = path.join(__dirname, `${SOURCE_PATH}/`)
+  return gulp.src([sourceTtfDir])
     // .pipe(gulp.dest(backupDir))
     .pipe(fontmin({
       text: TEXT,
     }))
     .pipe(gulp.dest(destDir))
-    .on('end', () => log('font-minify done!'))
 })
-
-gulp.task('ttf2woff2', () => {
-  const sourceDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/*.ttf`)
-  const backupDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/.fontMinify`)
-  const destDir = path.join(__dirname, `${SOURCE_PATH}/_nuxt/fonts/`)
-  return gulp.src(sourceDir)
-    .pipe(ttf2woff2())
-    .pipe(gulp.dest(destDir));
-});
 
 gulp.task('clean-font-cache', () => {
   return del([
@@ -114,4 +101,5 @@ gulp.task('html-minify', () => {
     .pipe(gulp.dest(SOURCE_PATH))
 });
 
-gulp.task('default', gulp.series('font-minify', 'ttf2woff2', 'clean-font-cache', 'assets-hash', 'html-minify'));
+gulp.task('default', gulp.series('assets-hash', 'html-minify'));
+gulp.task('font', gulp.series('font-minify'));

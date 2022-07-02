@@ -7,7 +7,8 @@
 
 @font-face {
   font-family: "Sarasa-Mono-SC";
-  src: url("sarasa-mono-sc-regular.woff2") format("woff2")
+  src:
+    url("sarasa-mono-sc-regular.woff2") format("woff2"),
     url("sarasa-mono-sc-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -25,7 +26,8 @@ body {
     background-color: @darkBackgroundColor;
   }
 
-  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  @media (prefers-color-scheme: light),
+  (prefers-color-scheme: no-preference) {
     color: @lightColor;
     background-color: @lightBackgroundColor;
   }
@@ -62,7 +64,8 @@ a:visited {
     color: @darkColor;
   }
 
-  @media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  @media (prefers-color-scheme: light),
+  (prefers-color-scheme: no-preference) {
     color: @lightColor;
   }
 

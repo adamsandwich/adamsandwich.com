@@ -22,7 +22,7 @@ jobs:
           node-version: "16.x"
 
       - name: Build project
-        run: yarn && yarn generate && yarn minify
+        run: yarn && yarn generate && yarn font-minify && yarn file-minify
 
 
       - name: ssh deploy
