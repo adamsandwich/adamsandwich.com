@@ -7,7 +7,8 @@
 
 @font-face {
   font-family: "Sarasa-Mono-SC";
-  src: url("sarasa-mono-sc-regular.ttf") format("truetype");
+  src: url("sarasa-mono-sc-regular.woff2") format("woff2")
+    url("sarasa-mono-sc-regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -18,6 +19,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: Sarasa-Mono-SC !important;
+
   @media (prefers-color-scheme: dark) {
     color: @darkColor;
     background-color: @darkBackgroundColor;

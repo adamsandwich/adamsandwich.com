@@ -33,6 +33,7 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-rev": "^9.0.0",
     "gulp-rev-rewrite": "^4.0.0",
+    "gulp-ttf2woff2": "^4.0.1",
     "less": "^3.13.1",
     "less-loader": "^7.3.0"
   }
