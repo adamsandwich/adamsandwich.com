@@ -2,7 +2,7 @@
   "version": "Sample 1.0.0",
   "model": "moc/hijiki.moc",
   "textures": [
-    "moc/hijiki.2048/texture_00.png@1024"
+    "moc/hijiki.2048/texture_00@1024.png"
   ],
   "name": "hijiki",
   "pose": "hijiki.pose.json",
